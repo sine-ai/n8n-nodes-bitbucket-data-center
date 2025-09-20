@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-bitbucket-data-center",
-  "version": "1.0.6",
+  "version": "1.4.0",
   "description": "n8n community node for Bitbucket Data Center with all operations and triggers",
   "keywords": [
     "n8n-community-node-package",

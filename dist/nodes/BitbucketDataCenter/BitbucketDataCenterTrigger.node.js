@@ -9,7 +9,7 @@ class BitbucketDataCenterTrigger {
             name: 'bitbucketDataCenterTrigger',
             icon: 'file:bitbucket.svg',
             group: ['trigger'],
-            version: 4,
+            version: 6,
             subtitle: '={{$parameter["event"]}}',
             description: 'Handle Bitbucket Data Center webhooks',
             defaults: {
@@ -419,7 +419,7 @@ class BitbucketDataCenterTrigger {
         };
     }
     async webhook() {
-        const bodyData = this.getBodyData();
+        const bodyData = (this.getBodyData() || {});
         const headers = this.getHeaderData();
         // Verify that the webhook is from Bitbucket Data Center
         const userAgent = headers['user-agent'];

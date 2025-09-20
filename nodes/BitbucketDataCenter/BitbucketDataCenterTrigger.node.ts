@@ -19,7 +19,7 @@ export class BitbucketDataCenterTrigger implements INodeType {
 		name: 'bitbucketDataCenterTrigger',
 		icon: 'file:bitbucket.svg',
 		group: ['trigger'],
-		version: 4,
+		version: 6,
 		subtitle: '={{$parameter["event"]}}',
 		description: 'Handle Bitbucket Data Center webhooks',
 		defaults: {
@@ -485,7 +485,7 @@ export class BitbucketDataCenterTrigger implements INodeType {
 	};
 
 	async webhook(this: IWebhookFunctions): Promise<IWebhookResponseData> {
-		const bodyData = this.getBodyData() as IDataObject;
+		const bodyData = (this.getBodyData() || {}) as IDataObject;
 		const headers = this.getHeaderData() as IDataObject;
 
 		// Verify that the webhook is from Bitbucket Data Center
