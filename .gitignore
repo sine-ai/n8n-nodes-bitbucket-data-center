@@ -1,1 +1,12 @@
 node_modules
+
+# Development environment files
+n8n-management.md
+
+# Docker and development artifacts
+.env
+.env.local
+
+# Logs
+*.log
+ngrok.log

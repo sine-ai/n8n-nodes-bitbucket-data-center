@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_TRUST_PROXY=1
+      - N8N_SECURE_COOKIE=false
+      - N8N_PROXY_HOPS=1
+      - WEBHOOK_URL=http://localhost:5678
+      - N8N_EDITOR_BASE_URL=http://localhost:5678
+      - N8N_DISABLE_UI_LOGIN=true
+      - N8N_PROXY_HOST=http://localhost:5678
+      - N8N_HOST=http://localhost:5678
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - N8N_COMMUNITY_PACKAGES=n8n-nodes-jira-data-center,n8n-nodes-bitbucket-data-center
+      # Disable telemetry to prevent connection errors
+      - N8N_DIAGNOSTICS_ENABLED=false
+      # Performance optimizations
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - N8N_RUNNERS_ENABLED=true
+      - DB_SQLITE_POOL_SIZE=10
+    volumes:
+      - n8n_data:/home/node/.n8n
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5678/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  n8n_data:
+    external: true
