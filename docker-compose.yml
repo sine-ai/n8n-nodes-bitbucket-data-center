@@ -17,7 +17,7 @@ services:
       - N8N_PROXY_HOST=http://localhost:5678
       - N8N_HOST=http://localhost:5678
       - NODE_TLS_REJECT_UNAUTHORIZED=0
-      - N8N_COMMUNITY_PACKAGES=n8n-nodes-jira-data-center,n8n-nodes-bitbucket-data-center
+      - N8N_COMMUNITY_PACKAGES=n8n-nodes-jira-data-center,n8n-nodes-bitbucket-data-center@1.5.0
       # Disable telemetry to prevent connection errors
       - N8N_DIAGNOSTICS_ENABLED=false
       # Performance optimizations

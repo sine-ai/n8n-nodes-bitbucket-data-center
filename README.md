@@ -4,7 +4,7 @@
 ![n8n](https://img.shields.io/badge/n8n-community-FF6D5A?style=flat&logo=n8n)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-This is an n8n community node that allows you to interact with Bitbucket Data Center (Server) instances. It provides comprehensive operations for projects, repositories, pull requests, branches, commits, and users, as well as webhook triggers for real-time automation.
+This is an n8n community node that allows you to interact with Bitbucket Data Center (Server) instances. It provides comprehensive operations for projects, repositories, pull requests (with full comment and review management), branches, commits, users, tags, files, and webhooks, as well as webhook triggers for real-time automation.
 
 ## Table of Contents
 
@@ -105,7 +105,7 @@ docker restart your-n8n-container
 
 ## Operations
 
-All operations now feature **smart dropdowns** that automatically populate with data from your Bitbucket Data Center instance, making configuration faster and error-free.
+All operations now feature **smart dropdowns** that automatically populate with data from your Bitbucket Data Center instance, making configuration faster and error-free. With **45+ operations** across 10 resource types, this node provides complete Bitbucket Data Center API coverage.
 
 ### Projects
 
@@ -139,6 +139,23 @@ All operations now feature **smart dropdowns** that automatically populate with 
 | **Merge** | Merge a pull request | Project (dropdown), Repository (dropdown), PR ID |
 | **Decline** | Decline a pull request | Project (dropdown), Repository (dropdown), PR ID |
 
+#### Pull Request Comments
+| **Add Comment** | Add a comment to a pull request | Project (dropdown), Repository (dropdown), PR ID, Comment Text |
+| **Get All Comments** | Get all comments for a pull request | Project (dropdown), Repository (dropdown), PR ID |
+| **Update Comment** | Update a pull request comment | Project (dropdown), Repository (dropdown), PR ID, Comment ID, Comment Text |
+| **Delete Comment** | Delete a pull request comment | Project (dropdown), Repository (dropdown), PR ID, Comment ID |
+
+#### Pull Request Reviews
+| **Approve** | Approve a pull request | Project (dropdown), Repository (dropdown), PR ID |
+| **Unapprove** | Remove approval from a pull request | Project (dropdown), Repository (dropdown), PR ID |
+| **Needs Work** | Mark a pull request as needing work | Project (dropdown), Repository (dropdown), PR ID |
+| **Add Reviewer** | Add a reviewer to a pull request | Project (dropdown), Repository (dropdown), PR ID, Username |
+| **Remove Reviewer** | Remove a reviewer from a pull request | Project (dropdown), Repository (dropdown), PR ID, Username |
+
+#### Pull Request Information
+| **Get Activities** | Get all activities for a pull request | Project (dropdown), Repository (dropdown), PR ID |
+| **Get Participants** | Get all participants for a pull request | Project (dropdown), Repository (dropdown), PR ID |
+
 ### Branches
 
 | Operation | Description | Required Parameters |
@@ -160,6 +177,31 @@ All operations now feature **smart dropdowns** that automatically populate with 
 |-----------|-------------|-------------------|
 | **Get** | Get user information | Username (optional - defaults to current user) |
 | **Get All** | List all users | - |
+
+### Tags
+
+| Operation | Description | Required Parameters |
+|-----------|-------------|-------------------|
+| **Get All** | List all tags | Project (dropdown), Repository (dropdown) |
+| **Create** | Create a new tag | Project (dropdown), Repository (dropdown), Tag Name, Start Point |
+| **Delete** | Delete a tag | Project (dropdown), Repository (dropdown), Tag Name |
+
+### Files
+
+| Operation | Description | Required Parameters |
+|-----------|-------------|-------------------|
+| **Get** | Get file content | Project (dropdown), Repository (dropdown), File Path |
+| **Get All** | List files in a directory | Project (dropdown), Repository (dropdown), Directory Path (optional) |
+| **Create** | Create or update a file | Project (dropdown), Repository (dropdown), File Path, File Content, Commit Message |
+
+### Webhooks
+
+| Operation | Description | Required Parameters |
+|-----------|-------------|-------------------|
+| **Get All** | List all webhooks | Project (dropdown), Repository (dropdown) |
+| **Create** | Create a new webhook | Project (dropdown), Repository (dropdown), Webhook URL, Events |
+| **Update** | Update an existing webhook | Project (dropdown), Repository (dropdown), Webhook ID, Webhook URL, Events |
+| **Delete** | Delete a webhook | Project (dropdown), Repository (dropdown), Webhook ID |
 
 ## Triggers
 
