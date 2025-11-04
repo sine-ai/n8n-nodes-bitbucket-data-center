@@ -618,7 +618,7 @@ export class BitbucketDataCenter implements INodeType {
 				displayOptions: {
 					show: {
 						resource: ['repository', 'pullRequest', 'issue', 'branch', 'commit'],
-						operation: ['get', 'update', 'delete', 'merge', 'decline', 'fork'],
+						operation: ['get', 'update', 'delete', 'merge', 'decline', 'fork','create'],
 					},
 				},
 				default: '',
